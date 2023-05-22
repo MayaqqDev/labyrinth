@@ -1,5 +1,6 @@
 package dev.mayaqq.labyrinth.recipes;
 
+import dev.mayaqq.labyrinth.registry.RecipeRegistry;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.Ingredient;
@@ -65,12 +66,6 @@ public class ForgeRecipe implements Recipe<Inventory> {
 
     @Override
     public RecipeType<?> getType() {
-        return Type.INSTANCE;
-    }
-
-    public static class Type implements RecipeType<ForgeRecipe> {
-        private Type() {}
-        public static final Type INSTANCE = new Type();
-        public static final String ID = "forging";
+        return RecipeRegistry.FORGING;
     }
 }

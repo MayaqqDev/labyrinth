@@ -22,6 +22,7 @@ dependencies {
     modImplementation include("eu.pb4:polymer-core:${project.polymer_version}")
     modImplementation include("eu.pb4:polymer-resource-pack:${project.polymer_version}")
     modImplementation include("xyz.nucleoid:server-translations-api:${project.server_translations_api_version}")
+    modImplementation include("eu.pb4:sgui:${project.sgui_version}")
     }
 
 processResources {

@@ -38,15 +38,15 @@ public class ForgeRecipeSerializer implements RecipeSerializer<ForgeRecipe> {
 
     @Override
     public ForgeRecipe read(Identifier id, PacketByteBuf buf) {
-        DefaultedList<Ingredient> ingredients = DefaultedList.of();
-        ingredients.replaceAll(ignored -> Ingredient.fromPacket(buf));
+        DefaultedList<Ingredient> ingredients = buf.readCollection(DefaultedList::ofSize, Ingredient::fromPacket);
+
         ItemStack output = buf.readItemStack();
         return new ForgeRecipe(ingredients, output, id);
     }
 
     @Override
     public void write(PacketByteBuf buf, ForgeRecipe recipe) {
-        recipe.getIngredients().forEach(ingredient -> ingredient.write(buf));
+        buf.writeCollection(recipe.getIngredients(), (buf2, ingredient) -> ingredient.write(buf2));
         buf.writeItemStack(recipe.getOutput(DynamicRegistryManager.EMPTY));
     }
 
