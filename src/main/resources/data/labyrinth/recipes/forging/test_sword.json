@@ -1,0 +1,12 @@
+{
+  "type": "labyrinth:forging",
+  "input": [
+    {
+      "item": "minecraft:cobblestone"
+    },
+    {
+      "item": "minecraft:stone"
+    }
+  ],
+  "result": "labyrinth:test_sword"
+}
