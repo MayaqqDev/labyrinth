@@ -8,5 +8,6 @@
       "item": "minecraft:stone"
     }
   ],
-  "result": "labyrinth:test_sword"
+  "result": "labyrinth:test_sword",
+  "material": "minecraft:command_block"
 }

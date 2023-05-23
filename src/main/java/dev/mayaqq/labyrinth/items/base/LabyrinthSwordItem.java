@@ -1,20 +1,20 @@
 package dev.mayaqq.labyrinth.items.base;
 
 import eu.pb4.polymer.core.api.item.PolymerItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.SwordItem;
-import net.minecraft.item.ToolMaterial;
+import eu.pb4.polymer.resourcepack.api.PolymerResourcePackUtils;
+import net.minecraft.item.*;
 import net.minecraft.server.network.ServerPlayerEntity;
 import org.jetbrains.annotations.Nullable;
 
-public class LabyrinthSwordItem extends SwordItem implements PolymerItem {
+import static dev.mayaqq.labyrinth.Labyrinth.id;
+
+public class LabyrinthSwordItem extends SwordItem implements PolymerItem, LabyrinthItem {
     private final Item polymerItem;
     private final int customModelData;
-    public LabyrinthSwordItem(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, Settings settings, Item polymerItem, int customModelData) {
-        super(toolMaterial, attackDamage, attackSpeed, settings);
+    public LabyrinthSwordItem(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, Item polymerItem, String id) {
+        super(toolMaterial, attackDamage, attackSpeed, new Settings());
         this.polymerItem = polymerItem;
-        this.customModelData = customModelData;
+        this.customModelData = PolymerResourcePackUtils.requestModel(polymerItem, id("item/" + id)).value();
     }
     @Override
     public Item getPolymerItem(ItemStack itemStack, @Nullable ServerPlayerEntity player) {

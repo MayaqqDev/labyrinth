@@ -8,8 +8,6 @@ import net.minecraft.recipe.RecipeType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 
-import static dev.mayaqq.labyrinth.Labyrinth.id;
-
 public class RecipeRegistry {
     public static final String FORGING_ID = "forging";
     public static RecipeType<ForgeRecipe> FORGING;
