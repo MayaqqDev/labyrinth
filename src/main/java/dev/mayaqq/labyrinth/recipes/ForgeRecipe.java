@@ -1,6 +1,9 @@
 package dev.mayaqq.labyrinth.recipes;
 
+import dev.mayaqq.labyrinth.registry.ItemRegistry;
 import dev.mayaqq.labyrinth.registry.RecipeRegistry;
+import dev.mayaqq.labyrinth.utils.recipe.IngredientStack;
+import eu.pb4.polymer.core.api.item.PolymerRecipe;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
@@ -13,14 +16,14 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
 
-public class ForgeRecipe implements Recipe<Inventory> {
+public class ForgeRecipe implements Recipe<Inventory>, PolymerRecipe {
 
-    protected final DefaultedList<Ingredient> input;
+    protected final DefaultedList<IngredientStack> input;
     private final ItemStack result;
     private final Identifier id;
     private final Block material;
 
-    public ForgeRecipe(DefaultedList<Ingredient> input, ItemStack result, Identifier id, Block material) {
+    public ForgeRecipe(DefaultedList<IngredientStack> input, ItemStack result, Identifier id, Block material) {
         this.input = input;
         this.result = result;
         this.id = id;
@@ -29,17 +32,29 @@ public class ForgeRecipe implements Recipe<Inventory> {
 
     @Override
     public DefaultedList<Ingredient> getIngredients() {
-        return input;
+        return IngredientStack.listIngredients(this.input);
+    }
+
+    public DefaultedList<IngredientStack> getIngredientStacks() {
+        return this.input;
     }
 
     @Override
     public boolean matches(Inventory inventory, World world) {
-        input.forEach(ingredient -> {
-            if (!ingredient.test(inventory.getStack(0))) {
-                return;
+        for (IngredientStack ingredient : input) {
+            boolean foundMatch = false;
+            for (int slot = 0; slot < inventory.size(); slot++) {
+                ItemStack stack = inventory.getStack(slot);
+                if (ingredient.test(stack)) {
+                    foundMatch = true;
+                    break;
+                }
             }
-        });
-        return false;
+            if (!foundMatch) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
@@ -65,6 +80,12 @@ public class ForgeRecipe implements Recipe<Inventory> {
     public Block getMaterial() {
         return this.material;
     }
+
+    @Override
+    public ItemStack createIcon() {
+        return new ItemStack(ItemRegistry.TEST_SWORD);
+    }
+
 
     @Override
     public RecipeSerializer<?> getSerializer() {

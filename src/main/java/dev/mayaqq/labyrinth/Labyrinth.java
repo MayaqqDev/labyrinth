@@ -1,7 +1,6 @@
 package dev.mayaqq.labyrinth;
 
 import dev.mayaqq.labyrinth.registry.ItemRegistry;
-import dev.mayaqq.labyrinth.registry.MaterialRegistry;
 import dev.mayaqq.labyrinth.registry.RecipeRegistry;
 import dev.mayaqq.labyrinth.registry.TagRegistry;
 import net.fabricmc.api.ModInitializer;
@@ -22,7 +21,6 @@ public class Labyrinth implements ModInitializer {
         LOGGER.info("Labyrinth is initializing...");
         ItemRegistry.register();
         TagRegistry.register();
-        MaterialRegistry.register();
         RecipeRegistry.register();
     }
 }

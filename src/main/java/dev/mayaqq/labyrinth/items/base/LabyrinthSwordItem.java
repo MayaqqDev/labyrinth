@@ -10,11 +10,11 @@ import static dev.mayaqq.labyrinth.Labyrinth.id;
 
 public class LabyrinthSwordItem extends SwordItem implements PolymerItem, LabyrinthItem {
     private final Item polymerItem;
-    private final int customModelData;
-    public LabyrinthSwordItem(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, Item polymerItem, String id) {
-        super(toolMaterial, attackDamage, attackSpeed, new Settings());
+    private final String id;
+    public LabyrinthSwordItem(ToolMaterial toolMaterial, int attackDamage, float attackSpeed, Item polymerItem, Settings settings, String id) {
+        super(toolMaterial, attackDamage, attackSpeed, settings);
         this.polymerItem = polymerItem;
-        this.customModelData = PolymerResourcePackUtils.requestModel(polymerItem, id("item/" + id)).value();
+        this.id = id;
     }
     @Override
     public Item getPolymerItem(ItemStack itemStack, @Nullable ServerPlayerEntity player) {
@@ -22,6 +22,6 @@ public class LabyrinthSwordItem extends SwordItem implements PolymerItem, Labyri
     }
     @Override
     public int getPolymerCustomModelData(ItemStack itemStack, @Nullable ServerPlayerEntity player) {
-        return this.customModelData;
+        return PolymerResourcePackUtils.requestModel(polymerItem, id("item/" + id)).value();
     }
 }

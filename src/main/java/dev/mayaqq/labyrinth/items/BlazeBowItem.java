@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Rarity;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -23,7 +24,7 @@ public class BlazeBowItem extends BowItem implements PolymerItem, LabyrinthItem 
     private final int customModelData;
 
     public BlazeBowItem(Item polymerItem, String id) {
-        super(new Item.Settings());
+        super(new Item.Settings().fireproof().rarity(Rarity.RARE).maxDamage(642));
         this.polymerItem = polymerItem;
         this.customModelData = PolymerResourcePackUtils.requestModel(polymerItem, id("item/" + id)).value();
     }
@@ -43,5 +44,13 @@ public class BlazeBowItem extends BowItem implements PolymerItem, LabyrinthItem 
     @Override
     public void onCraft(ItemStack itemStack, World world, net.minecraft.entity.player.PlayerEntity playerEntity) {
         itemStack.addEnchantment(Enchantments.FLAME, 1);
+    }
+    @Override
+    public int getMaxUseTime(ItemStack stack) {
+        return 100000;
+    }
+    @Override
+    public int getRange() {
+        return 20;
     }
 }

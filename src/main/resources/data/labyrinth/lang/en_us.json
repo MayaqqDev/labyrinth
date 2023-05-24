@@ -1,10 +1,12 @@
 {
   "creative.labyrinth.group": "Labyrinth",
+
   "item.labyrinth.test_sword": "Test Sword",
+  "item.labyrinth.blaze_bow": "Blaze Bow",
+    "item.labyrinth.blazebow.tooltip": "Comes pre-enchanted with Flame I",
+  "item.labyrinth.hammer.tooltip": "Comes pre-enchanted with Knockback II",
 
   "gui.labyrinth.forge.title": "Forge",
   "gui.labyrinth.forge.message.negative.ingredient": "§cYou don't have all the required ingredients!",
-  "gui.labyrinth.forge.message.negative.forge": "§cYour forge structure is not complete!",
-
-  "item.labyrinth.blazebow.tooltip": "Comes pre-enchanted with Flame I"
+  "gui.labyrinth.forge.message.negative.forge": "§cYour forge structure is not complete!"
 }

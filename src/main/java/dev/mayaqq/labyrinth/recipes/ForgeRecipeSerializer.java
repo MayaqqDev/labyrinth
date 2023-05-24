@@ -1,18 +1,18 @@
 package dev.mayaqq.labyrinth.recipes;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import dev.mayaqq.labyrinth.utils.recipe.IngredientStack;
+import dev.mayaqq.labyrinth.utils.recipe.RecipeParser;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 
 public class ForgeRecipeSerializer implements RecipeSerializer<ForgeRecipe> {
@@ -25,20 +25,17 @@ public class ForgeRecipeSerializer implements RecipeSerializer<ForgeRecipe> {
     public static final Identifier ID = new Identifier("labyrinth", "forging");
     @Override
     public ForgeRecipe read(Identifier id, JsonObject json) {
-        ExampleRecipeJsonFormat recipeJson = new Gson().fromJson(json, ExampleRecipeJsonFormat.class);
-        DefaultedList<Ingredient> ingredients = DefaultedList.of();
-        Block material = Registries.BLOCK.get(new Identifier(recipeJson.material));
-        for (JsonElement je : recipeJson.input) {
-            ingredients.add(Ingredient.fromJson(je));
-        }
-        Item outputItem = Registries.ITEM.get(new Identifier(recipeJson.result));
+        JsonArray input = JsonHelper.getArray(json, "input");
+        DefaultedList<IngredientStack> craftingInputs = RecipeParser.ingredientStacksFromJson(input, input.size());
+        Block material = Registries.BLOCK.get(Identifier.tryParse(JsonHelper.getString(json, "material")));
+        Item outputItem = Registries.ITEM.get(Identifier.tryParse(JsonHelper.getString(json, "result")));
         ItemStack output = new ItemStack(outputItem, 1);
-        return new ForgeRecipe(ingredients, output, id, material);
+        return new ForgeRecipe(craftingInputs, output, id, material);
     }
 
     @Override
     public ForgeRecipe read(Identifier id, PacketByteBuf buf) {
-        DefaultedList<Ingredient> ingredients = buf.readCollection(DefaultedList::ofSize, Ingredient::fromPacket);
+        DefaultedList<IngredientStack> ingredients = IngredientStack.decodeByteBuf(buf, buf.readShort());
 
         ItemStack output = buf.readItemStack();
         Block material = Registries.BLOCK.get(new Identifier(buf.readString()));
@@ -47,17 +44,11 @@ public class ForgeRecipeSerializer implements RecipeSerializer<ForgeRecipe> {
 
     @Override
     public void write(PacketByteBuf buf, ForgeRecipe recipe) {
-        buf.writeCollection(recipe.getIngredients(), (buf2, ingredient) -> ingredient.write(buf2));
+        buf.writeShort(recipe.input.size());
+        for (IngredientStack ingredientStack : recipe.input) {
+            ingredientStack.write(buf);
+        }
         buf.writeItemStack(recipe.getOutput(DynamicRegistryManager.EMPTY));
         buf.writeString(Registries.BLOCK.getId(recipe.getMaterial()).toString());
-    }
-
-
-
-    static class ExampleRecipeJsonFormat {
-        String type;
-        JsonArray input;
-        String result;
-        String material;
     }
 }
