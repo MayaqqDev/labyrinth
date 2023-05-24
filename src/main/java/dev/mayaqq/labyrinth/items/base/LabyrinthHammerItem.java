@@ -21,6 +21,7 @@ public class LabyrinthHammerItem extends LabyrinthSwordItem {
     }
     @Override
     public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
-        tooltip.add(Text.translatable("item.labyrinth.hammer.tooltip").formatted(Formatting.GRAY));
+        tooltip.add(Text.translatable("item.labyrinth.hammer.tooltip").formatted(Formatting.GRAY).formatted(Formatting.ITALIC));
+        tooltip.add(Text.of(" "));
     }
 }

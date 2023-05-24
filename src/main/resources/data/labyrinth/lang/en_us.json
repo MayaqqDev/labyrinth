@@ -4,7 +4,11 @@
   "item.labyrinth.test_sword": "Test Sword",
   "item.labyrinth.blaze_bow": "Blaze Bow",
     "item.labyrinth.blazebow.tooltip": "Comes pre-enchanted with Flame I",
-  "item.labyrinth.hammer.tooltip": "Comes pre-enchanted with Knockback II",
+  "item.labyrinth.iron_warhammer": "Iron Warhammer",
+  "item.labyrinth.golden_warhammer": "Golden Warhammer",
+  "item.labyrinth.diamond_warhammer": "Diamond Warhammer",
+  "item.labyrinth.netherite_warhammer": "Netherite Warhammer",
+    "item.labyrinth.hammer.tooltip": "Heavy, but powerful",
 
   "gui.labyrinth.forge.title": "Forge",
   "gui.labyrinth.forge.message.negative.ingredient": "§cYou don't have all the required ingredients!",

@@ -1,5 +1,6 @@
 package dev.mayaqq.labyrinth;
 
+import dev.mayaqq.labyrinth.registry.EventRegistry;
 import dev.mayaqq.labyrinth.registry.ItemRegistry;
 import dev.mayaqq.labyrinth.registry.RecipeRegistry;
 import dev.mayaqq.labyrinth.registry.TagRegistry;
@@ -22,5 +23,6 @@ public class Labyrinth implements ModInitializer {
         ItemRegistry.register();
         TagRegistry.register();
         RecipeRegistry.register();
+        EventRegistry.register();
     }
 }

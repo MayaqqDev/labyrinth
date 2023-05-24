@@ -1,0 +1,19 @@
+{
+  "type": "labyrinth:forging",
+  "input": [
+    {
+      "item": "minecraft:gold_ingot",
+      "count": 14
+    },
+    {
+      "item": "minecraft:gold_block",
+      "count": 1
+    },
+    {
+      "item": "minecraft:stick",
+      "count": 3
+    }
+  ],
+  "result": "labyrinth:golden_warhammer",
+  "material": "minecraft:gold_block"
+}

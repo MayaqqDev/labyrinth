@@ -6,17 +6,23 @@
 package dev.mayaqq.labyrinth.utils.recipe;
 
 import com.google.gson.*;
-import com.google.gson.stream.*;
-import com.mojang.brigadier.exceptions.*;
-import net.minecraft.item.*;
-import net.minecraft.nbt.*;
-import net.minecraft.recipe.*;
+import com.google.gson.stream.JsonReader;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtHelper;
+import net.minecraft.recipe.Ingredient;
+import net.minecraft.recipe.ShapedRecipe;
 import net.minecraft.registry.Registries;
-import net.minecraft.util.*;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.JsonHelper;
 import net.minecraft.util.collection.DefaultedList;
 
-import java.io.*;
-import java.nio.charset.*;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 @SuppressWarnings({"unused", "deprecation"})
 public class RecipeParser {

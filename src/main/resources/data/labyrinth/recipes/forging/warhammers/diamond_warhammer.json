@@ -1,0 +1,19 @@
+{
+  "type": "labyrinth:forging",
+  "input": [
+    {
+      "item": "minecraft:diamond",
+      "count": 14
+    },
+    {
+      "item": "minecraft:diamond_block",
+      "count": 1
+    },
+    {
+      "item": "minecraft:stick",
+      "count": 3
+    }
+  ],
+  "result": "labyrinth:diamond_warhammer",
+  "material": "minecraft:diamond_block"
+}

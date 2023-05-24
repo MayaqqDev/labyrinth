@@ -7,16 +7,19 @@ import eu.pb4.sgui.api.elements.GuiElementBuilder;
 import eu.pb4.sgui.api.gui.SimpleGui;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeManager;
 import net.minecraft.registry.DynamicRegistryManager;
+import net.minecraft.registry.Registries;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 
@@ -44,7 +47,18 @@ public class ForgeGui {
             ForgeRecipe recipe = forgeRecipes.get(i);
             DefaultedList<IngredientStack> ingredients = recipe.getIngredientStacks();
             GuiElementBuilder guiElement = new GuiElementBuilder();
-            guiElement.setItem(recipe.getOutput(DynamicRegistryManager.EMPTY).getItem());
+            ItemStack stack = recipe.getOutput(DynamicRegistryManager.EMPTY).copy();
+            stack.onCraft(world, player, stack.getCount());
+            if (!stack.getEnchantments().isEmpty()) {
+                for (int y = 0; y < stack.getEnchantments().size(); y++) {
+                    NbtCompound enchantment = stack.getEnchantments().getCompound(y);
+                    Identifier id = new Identifier(enchantment.get("id").asString());
+                    String levelString = enchantment.get("lvl").asString();
+                    int level = Integer.parseInt(levelString.substring(0, levelString.length() - 1));
+                    guiElement.enchant(Registries.ENCHANTMENT.get(id), level);
+                }
+            }
+            guiElement.setItem(stack.getItem());
             guiElement.addLoreLine(Text.of(" "));
             // goes through every ingredient in the recipe and checks if the player has it
             for (IngredientStack ingredient : ingredients) {
@@ -89,8 +103,6 @@ public class ForgeGui {
                             }
                         }
                     });
-                    ItemStack stack = recipe.getOutput(DynamicRegistryManager.EMPTY).copy();
-                    stack.onCraft(world, player, stack.getCount());
                     // spawns the output item entity
                     world.spawnEntity(new ItemEntity(player.getWorld(), pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, stack));
                     gui.close();
