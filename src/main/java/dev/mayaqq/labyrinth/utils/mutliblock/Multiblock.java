@@ -9,6 +9,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.registry.Registries;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.joml.Vector3f;
@@ -49,7 +50,6 @@ public class Multiblock {
     }
 
     public boolean check(BlockPos pos, World world) {
-        HashMap<BlockPos, HolderAttachment> tempAttachments = new HashMap<>();
         //find the $ in the pattern
         BlockPos corner = findOffset(pos);
         if (corner == null) {
@@ -61,20 +61,25 @@ public class Multiblock {
             for (int j = 0; j < pattern[i].length; j++) {
                 for (int k = 0; k < pattern[i][j].length; k++) {
                     BlockPos blockPos = corner.add(j, i, k);
+                    Predicate<BlockState> predicate = predicates.get(pattern[i][j][k]);
+                    boolean isRightBlock = predicate.test(world.getBlockState(blockPos));
                     BlockDisplayElement element = new BlockDisplayElement();
+
+                    //if the block is already in the map, remove it
                     if (attachments.containsKey(blockPos)) {
                         attachments.get(blockPos).destroy();
                         attachments.remove(blockPos);
                         elements.remove(blockPos);
                     } else {
+                        // if the block is not in the map, add it and make cool
                         ElementHolder holder = new ElementHolder() {
                             @Override
                             public Vec3d getPos() {
                                 return new Vec3d(blockPos.getX(), blockPos.getY(), blockPos.getZ());
                             }
                         };
-                        Predicate<BlockState> predicate = predicates.get(pattern[i][j][k]);
-                        // get the blockstate from the predicate
+                        HolderAttachment attachment = ChunkAttachment.of(holder, (ServerWorld) world, blockPos);
+                        // TODO: optimize this
                         for (Block state : Registries.BLOCK) {
                             BlockState blockState = state.getDefaultState();
                             if (predicate.test(blockState)) {
@@ -82,22 +87,25 @@ public class Multiblock {
                                 break;
                             }
                         }
-                        if (!world.getBlockState(blockPos).isAir() && !predicates.get(pattern[i][j][k]).test(world.getBlockState(blockPos))) {
+                        // if the block is not air and is not the right block, make it glow
+                        if (!world.getBlockState(blockPos).isAir() && !isRightBlock) {
                             element.setGlowing(true);
                         }
+                        // put the block in the middle of the block
                         element.setOffset(new Vec3d(0.25F, 0.25F, 0.25F));
-                        if (!predicates.get(pattern[i][j][k]).test(world.getBlockState(blockPos))) {
+                        // make the scale 0 if the block is right, so its invisible, and 0.5 if its wrong so its visible
+                        if (!isRightBlock) {
                             element.setScale(new Vector3f(0.5F, 0.5F, 0.5F));
                         } else {
                             element.setScale(new Vector3f(0.0F, 0.0F, 0.0F));
                         }
+                        // put the block in the map
                         holder.addElement(element);
-                        HolderAttachment attachment = ChunkAttachment.of(holder, (ServerWorld) world, blockPos);
                         attachments.put(blockPos, attachment);
-                        tempAttachments.put(blockPos, attachment);
                         elements.put(blockPos, element);
                     }
-                    if (!predicates.get(pattern[i][j][k]).test(world.getBlockState(blockPos))) {
+                    // if the block is not the right block, return false
+                    if (!isRightBlock) {
                         result = false;
                     }
                 }
@@ -106,10 +114,15 @@ public class Multiblock {
         return result;
     }
 
+    public static void rotate() {
+
+    }
+
     public BlockPos findOffset(BlockPos pos) {
-        for (int i = 0; i < this.getHeight(); i++) {
-            for (int j = 0; j < this.getWidth(); j++) {
-                for (int k = 0; k < this.getLength(); k++) {
+        //find the corner of the pattern
+        for (int i = 0; i < this.height; i++) {
+            for (int j = 0; j < this.width; j++) {
+                for (int k = 0; k < this.length; k++) {
                     if (pattern[i][j][k] == '$') {
                         return pos.add(-j, -i, -k);
                     }

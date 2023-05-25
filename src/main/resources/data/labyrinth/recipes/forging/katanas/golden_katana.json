@@ -1,0 +1,19 @@
+{
+  "type": "labyrinth:forging",
+  "input": [
+    {
+      "item": "minecraft:gold_ingot",
+      "count": 10
+    },
+    {
+      "item": "minecraft:bone_block",
+      "count": 1
+    },
+    {
+      "item": "minecraft:birch_planks",
+      "count": 3
+    }
+  ],
+  "result": "labyrinth:golden_katana",
+  "material": "minecraft:gold_block"
+}

@@ -1,0 +1,19 @@
+{
+  "type": "labyrinth:forging",
+  "input": [
+    {
+      "item": "minecraft:iron_ingot",
+      "count": 1
+    },
+    {
+      "item": "minecraft:stick",
+      "count": 1
+    },
+    {
+      "item": "minecraft:flint",
+      "count": 1
+    }
+  ],
+  "result": "labyrinth:iron_knife",
+  "material": "minecraft:iron_block"
+}

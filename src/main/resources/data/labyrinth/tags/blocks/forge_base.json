@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "minecraft:cobblestone",
     "minecraft:iron_block",
     "minecraft:gold_block",
     "minecraft:diamond_block",

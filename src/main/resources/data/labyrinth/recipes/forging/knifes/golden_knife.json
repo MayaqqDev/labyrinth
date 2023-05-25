@@ -1,0 +1,19 @@
+{
+  "type": "labyrinth:forging",
+  "input": [
+    {
+      "item": "minecraft:gold_ingot",
+      "count": 1
+    },
+    {
+      "item": "minecraft:stick",
+      "count": 1
+    },
+    {
+      "item": "minecraft:flint",
+      "count": 1
+    }
+  ],
+  "result": "labyrinth:golden_knife",
+  "material": "minecraft:gold_block"
+}

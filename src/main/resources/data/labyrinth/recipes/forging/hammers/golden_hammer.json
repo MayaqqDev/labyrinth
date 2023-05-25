@@ -1,0 +1,23 @@
+{
+  "type": "labyrinth:forging",
+  "input": [
+    {
+      "item": "minecraft:gold_ingot",
+      "count": 6
+    },
+    {
+      "item": "minecraft:dark_oak_log",
+      "count": 2
+    },
+    {
+      "item": "minecraft:string",
+      "count": 2
+    },
+    {
+      "item": "minecraft:amethyst_shard",
+      "count": 1
+    }
+  ],
+  "result": "labyrinth:golden_hammer",
+  "material": "minecraft:gold_block"
+}

@@ -6,12 +6,20 @@
       "count": 14
     },
     {
-      "item": "minecraft:iron_block",
+      "item": "minecraft:polished_blackstone_brick_wall",
+      "count": 4
+    },
+    {
+      "item": "minecraft:amethyst_shard",
       "count": 1
     },
     {
-      "item": "minecraft:stick",
-      "count": 3
+      "item": "minecraft:iron_block",
+      "count": 2
+    },
+    {
+      "item": "minecraft:pointed_dripstone",
+      "count": 2
     }
   ],
   "result": "labyrinth:iron_warhammer",

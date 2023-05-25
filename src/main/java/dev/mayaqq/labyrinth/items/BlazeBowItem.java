@@ -38,10 +38,6 @@ public class BlazeBowItem extends BowItem implements PolymerItem, LabyrinthItem 
         return this.customModelData;
     }
     @Override
-    public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
-        tooltip.add(Text.translatable("item.labyrinth.blazebow.tooltip").formatted(Formatting.GRAY));
-    }
-    @Override
     public void onCraft(ItemStack itemStack, World world, net.minecraft.entity.player.PlayerEntity playerEntity) {
         itemStack.addEnchantment(Enchantments.FLAME, 1);
     }

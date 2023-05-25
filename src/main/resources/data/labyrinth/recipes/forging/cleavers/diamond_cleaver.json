@@ -1,0 +1,19 @@
+{
+  "type": "labyrinth:forging",
+  "input": [
+    {
+      "item": "minecraft:diamond",
+      "count": 7
+    },
+    {
+      "item": "minecraft:spruce_log",
+      "count": 2
+    },
+    {
+      "item": "minecraft:fermented_spider_eye",
+      "count": 1
+    }
+  ],
+  "result": "labyrinth:diamond_cleaver",
+  "material": "minecraft:diamond_block"
+}

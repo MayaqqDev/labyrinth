@@ -1,0 +1,23 @@
+{
+  "type": "labyrinth:forging",
+  "input": [
+    {
+      "item": "minecraft:netherite_ingot",
+      "count": 7
+    },
+    {
+      "item": "minecraft:acacia_log",
+      "count": 2
+    },
+    {
+      "item": "minecraft:string",
+      "count": 2
+    },
+    {
+      "item": "minecraft:flint",
+      "count": 1
+    }
+  ],
+  "result": "labyrinth:netherite_waraxe",
+  "material": "minecraft:netherite_block"
+}

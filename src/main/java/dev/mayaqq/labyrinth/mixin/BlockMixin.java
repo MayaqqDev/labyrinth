@@ -1,5 +1,6 @@
 package dev.mayaqq.labyrinth.mixin;
 
+import dev.mayaqq.labyrinth.registry.TagRegistry;
 import dev.mayaqq.labyrinth.utils.mutliblock.Multiblock;
 import eu.pb4.polymer.virtualentity.api.ElementHolder;
 import eu.pb4.polymer.virtualentity.api.attachment.ChunkAttachment;
@@ -7,7 +8,9 @@ import eu.pb4.polymer.virtualentity.api.attachment.HolderAttachment;
 import eu.pb4.polymer.virtualentity.api.elements.BlockDisplayElement;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
@@ -45,6 +48,13 @@ public class BlockMixin {
             Multiblock.attachments.get(pos).destroy();
             Multiblock.attachments.put(pos, attachment);
             Multiblock.elements.put(pos, element);
+        }
+    }
+    @Inject(method = "onBreak", at = @At("HEAD"))
+    private void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player, CallbackInfo ci) {
+        if (world.isClient) return;
+        if (state.getBlock().getDefaultState() == Blocks.ANVIL.getDefaultState() && world.getBlockState(pos.down()).isIn(TagRegistry.FORGE_BASE)) {
+
         }
     }
 }

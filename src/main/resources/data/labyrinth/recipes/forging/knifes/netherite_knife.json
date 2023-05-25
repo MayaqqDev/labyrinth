@@ -1,0 +1,19 @@
+{
+  "type": "labyrinth:forging",
+  "input": [
+    {
+      "item": "minecraft:netherite_ingot",
+      "count": 1
+    },
+    {
+      "item": "minecraft:stick",
+      "count": 1
+    },
+    {
+      "item": "minecraft:flint",
+      "count": 1
+    }
+  ],
+  "result": "labyrinth:netherite_knife",
+  "material": "minecraft:netherite_block"
+}

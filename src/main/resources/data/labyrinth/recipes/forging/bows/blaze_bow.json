@@ -1,0 +1,31 @@
+{
+  "type": "labyrinth:forging",
+  "input": [
+    {
+      "item": "minecraft:netherite_ingot",
+      "count": 1
+    },
+    {
+      "item": "minecraft:blaze_rod",
+      "count": 4
+    },
+    {
+      "item": "minecraft:blaze_powder",
+      "count": 2
+    },
+    {
+      "item": "minecraft:chain",
+      "count": 4
+    },
+    {
+      "item": "minecraft:flint_and_steel",
+      "count": 1
+    },
+    {
+      "item": "minecraft:fire_charge",
+      "count": 1
+    }
+  ],
+  "result": "labyrinth:blaze_bow",
+  "material": "minecraft:netherite_block"
+}
