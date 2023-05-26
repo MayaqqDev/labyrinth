@@ -1,9 +1,6 @@
 package dev.mayaqq.labyrinth;
 
-import dev.mayaqq.labyrinth.registry.EventRegistry;
-import dev.mayaqq.labyrinth.registry.ItemRegistry;
-import dev.mayaqq.labyrinth.registry.RecipeRegistry;
-import dev.mayaqq.labyrinth.registry.TagRegistry;
+import dev.mayaqq.labyrinth.registry.*;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
@@ -24,5 +21,6 @@ public class Labyrinth implements ModInitializer {
         TagRegistry.register();
         RecipeRegistry.register();
         EventRegistry.register();
+        EntityRegistry.register();
     }
 }

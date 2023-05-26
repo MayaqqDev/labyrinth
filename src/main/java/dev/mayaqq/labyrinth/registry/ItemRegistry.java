@@ -71,13 +71,13 @@ public class ItemRegistry {
     // spear
     public static final float spearAttackSpeed = -2.8F;
     public static final LabyrinthSpearItem IRON_SPEAR = Registry.register(Registries.ITEM, id("iron_spear"),
-            new LabyrinthSpearItem(CustomMaterials.IRON, 8, spearAttackSpeed, Items.IRON_SWORD, new Item.Settings().maxDamage(250) , "iron_spear"));
+            new LabyrinthSpearItem(CustomMaterials.IRON, 8, spearAttackSpeed, Items.TRIDENT, new Item.Settings().maxDamage(250) , "iron_spear"));
     public static final LabyrinthSpearItem GOLDEN_SPEAR = Registry.register(Registries.ITEM, id("golden_spear"),
-            new LabyrinthSpearItem(CustomMaterials.GOLD, 9, spearAttackSpeed, Items.GOLDEN_SWORD, new Item.Settings().maxDamage(60) , "golden_spear"));
+            new LabyrinthSpearItem(CustomMaterials.GOLD, 9, spearAttackSpeed, Items.TRIDENT, new Item.Settings().maxDamage(60) , "golden_spear"));
     public static final LabyrinthSpearItem DIAMOND_SPEAR = Registry.register(Registries.ITEM, id("diamond_spear"),
-            new LabyrinthSpearItem(CustomMaterials.DIAMOND, 11, spearAttackSpeed, Items.DIAMOND_SWORD, new Item.Settings().maxDamage(1500) , "diamond_spear"));
+            new LabyrinthSpearItem(CustomMaterials.DIAMOND, 11, spearAttackSpeed, Items.TRIDENT, new Item.Settings().maxDamage(1500) , "diamond_spear"));
     public static final LabyrinthSpearItem NETHERITE_SPEAR = Registry.register(Registries.ITEM, id("netherite_spear"),
-            new LabyrinthSpearItem(CustomMaterials.NETHERITE, 13, spearAttackSpeed, Items.NETHERITE_SWORD, new Item.Settings().maxDamage(2000) , "netherite_spear"));
+            new LabyrinthSpearItem(CustomMaterials.NETHERITE, 13, spearAttackSpeed, Items.TRIDENT, new Item.Settings().maxDamage(2000) , "netherite_spear"));
 
     // cleaver
     public static final float cleaverAttackSpeed = -1.8F;
