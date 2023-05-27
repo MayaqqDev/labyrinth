@@ -12,11 +12,11 @@ import static dev.mayaqq.labyrinth.Labyrinth.id;
 
 public class LabyrinthAxeItem extends AxeItem implements LabyrinthItem {
     private final Item polymerItem;
-    private final String id;
+    private final int modelData;
     public LabyrinthAxeItem(ToolMaterial material, float attackDamage, float attackSpeed, Item polymerItem, Settings settings, String id) {
         super(material, attackDamage, attackSpeed, settings);
         this.polymerItem = polymerItem;
-        this.id = id;
+        this.modelData = PolymerResourcePackUtils.requestModel(polymerItem, id("item/" + id)).value();
     }
 
     @Override
@@ -26,6 +26,6 @@ public class LabyrinthAxeItem extends AxeItem implements LabyrinthItem {
 
     @Override
     public int getPolymerCustomModelData(ItemStack itemStack, @Nullable ServerPlayerEntity player) {
-        return PolymerResourcePackUtils.requestModel(polymerItem, id("item/" + id)).value();
+        return this.modelData;
     }
 }

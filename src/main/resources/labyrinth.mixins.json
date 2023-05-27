@@ -4,8 +4,7 @@
   "package": "dev.mayaqq.labyrinth.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "AnvilBlockMixin",
-    "BlockMixin",
+    "AnvilBlockMixin"
   ],
   "client": [
   ],

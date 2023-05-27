@@ -5,10 +5,7 @@ import dev.mayaqq.labyrinth.registry.RecipeRegistry;
 import dev.mayaqq.labyrinth.utils.recipe.IngredientStack;
 import eu.pb4.sgui.api.elements.GuiElementBuilder;
 import eu.pb4.sgui.api.gui.SimpleGui;
-import net.minecraft.block.Block;
-import net.minecraft.block.Material;
 import net.minecraft.entity.ItemEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
@@ -23,7 +20,6 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
@@ -37,9 +33,29 @@ public class ForgeGui {
     public static void gui(ServerPlayerEntity player, BlockPos pos) {
         ServerWorld world = player.getWorld();
         SimpleGui gui = new SimpleGui(ScreenHandlerType.GENERIC_9X6, player, false) {};
-        boolean setBack = false;
         // sets the title of the gui
         gui.setTitle(Text.translatable("gui.labyrinth.forge.title"));
+        // makes the gui look nicer
+        GuiElementBuilder background = new GuiElementBuilder();
+        background.setItem(Items.BLACK_STAINED_GLASS_PANE);
+        background.setName(Text.of(" "));
+        for (int i = 0; i < 9; ++i) {
+            gui.setSlot(i, background.build());
+        }
+        for (int i = 45; i < 54; ++i) {
+            gui.setSlot(i, background.build());
+        }
+        for (int i = 9; i < 45; i += 9) {
+            gui.setSlot(i, background.build());
+            gui.setSlot(i + 8, background.build());
+        }
+        gui.setSlot(49, new GuiElementBuilder()
+                .setItem(Items.BARRIER)
+                .setName(Text.of("§c§lClose"))
+                .setCallback((index, clickType, actionType) -> {
+                    gui.close();
+                })
+        );
         // creates an array of every recipe that is a forge recipe
         RecipeManager recipeManager = player.getServer().getRecipeManager();
         Collection<Recipe<?>> recipes = recipeManager.values();
@@ -48,13 +64,18 @@ public class ForgeGui {
             Recipe<?> recipe = recipes.toArray(new Recipe<?>[0])[i];
             if (recipe.getType() == RecipeRegistry.FORGING && ((ForgeRecipe) recipe).getMaterial() == player.world.getBlockState(pos.down()).getBlock()) {
                 forgeRecipes.add((ForgeRecipe) recipe);
-                if (!setBack) {
-                    makeBackground(gui, ((ForgeRecipe) recipe).getMaterial());
-                    setBack = true;
-                }
             }
         }
+        // creates a gui element for every recipe
         for (int i = 0; i < forgeRecipes.size(); i++) {
+            int guiAddition = 10;
+            for (int j = 6; j <= 34; j += 7) {
+                if (i > j) {
+                    guiAddition += 2;
+                } else {
+                    break;
+                }
+            }
             ForgeRecipe recipe = forgeRecipes.get(i);
             DefaultedList<IngredientStack> ingredients = recipe.getIngredientStacks();
             GuiElementBuilder guiElement = new GuiElementBuilder();
@@ -81,16 +102,7 @@ public class ForgeGui {
                     }
                 }
                 // creates a lore line for the ingredient
-                StringBuilder loreLine = new StringBuilder();
-                int count = ingredient.getCount();
-                loreLine.append(color);
-                loreLine.append(count);
-                loreLine.append(" ");
-                loreLine.append(ingredient.getIngredient().getMatchingStacks()[0].getName().getString());
-                if (count > 1) {
-                    loreLine.append("s");
-                }
-                guiElement.addLoreLine(Text.of(loreLine.toString()));
+                guiElement.addLoreLine(Text.of(color + ingredient.getCount() + "× " + ingredient.getIngredient().getMatchingStacks()[0].getName().getString()));
             }
             // creates a callback for when you click on the recipe, checks if the player has all the ingredients and if they do, removes them and gives them the output
             guiElement.setCallback((index, clickType, actionType) -> {
@@ -126,24 +138,8 @@ public class ForgeGui {
                     gui.close();
                 }
             });
-            gui.setSlot(i, guiElement.build());
+            gui.setSlot(i + guiAddition, guiElement.build());
         }
         gui.open();
-    }
-
-    private static void makeBackground(SimpleGui gui, Block material) {
-        String materialName = material.getName().getString().split(" ")[2].toLowerCase();
-        String[] weaponList = {"sword", "axe"};
-        if (materialName.equals("gold")) {
-            materialName += "en";
-        }
-        for (int i = 0; i < 54; i++) {
-            gui.setSlot(i, new GuiElementBuilder()
-                    .setItem(Registries.ITEM.get(new Identifier("minecraft", materialName + "_" + weaponList[i % 2])))
-                    .setName(Text.literal("Coming Soon").formatted(Formatting.ITALIC).formatted(Formatting.GRAY))
-                    .hideFlags()
-                    .build()
-            );
-        }
     }
 }

@@ -8,6 +8,20 @@ group = project.maven_group
 
 repositories {
     maven { url 'https://maven.nucleoid.xyz' }
+    repositories {
+        exclusiveContent {
+            forRepository {
+                maven {
+                    name = "Modrinth"
+                    url = "https://api.modrinth.com/maven"
+                }
+            }
+            filter {
+                includeGroup "maven.modrinth"
+            }
+        }
+    }
+
 }
 
 dependencies {
@@ -25,6 +39,7 @@ dependencies {
     modImplementation include("eu.pb4:sgui:${project.sgui_version}")
     modImplementation include("eu.pb4:polymer-virtual-entity:${project.polymer_version}")
     modImplementation include("eu.pb4:polymer-networking:${project.polymer_version}")
+    modImplementation ("maven.modrinth:nexusframe:${project.nexusframe_version}")
     }
 
 processResources {

@@ -4,7 +4,6 @@ import dev.mayaqq.labyrinth.registry.EntityRegistry;
 import dev.mayaqq.labyrinth.registry.ItemRegistry;
 import dev.mayaqq.labyrinth.registry.materials.CustomMaterials;
 import eu.pb4.polymer.core.api.entity.PolymerEntity;
-import eu.pb4.polymer.virtualentity.api.tracker.EntityTrackedData;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -13,10 +12,11 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.decoration.DisplayEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ToolMaterial;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.sound.SoundEvent;
@@ -27,7 +27,6 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
-import java.util.List;
 
 public class SpearEntity extends PersistentProjectileEntity implements PolymerEntity {
     private static final TrackedData<Boolean> ENCHANTED;
@@ -160,11 +159,6 @@ public class SpearEntity extends PersistentProjectileEntity implements PolymerEn
 
     @Override
     public EntityType<?> getPolymerEntityType(ServerPlayerEntity player) {
-        return EntityType.ITEM_DISPLAY;
-    }
-
-    @Override
-    public void modifyRawTrackedData(List<DataTracker.SerializedEntry<?>> data, ServerPlayerEntity player, boolean initial) {
-        data.add(DataTracker.SerializedEntry.of(ITEM, this.spearStack));
+        return EntityType.SPECTRAL_ARROW;
     }
 }

@@ -18,10 +18,11 @@ import static dev.mayaqq.labyrinth.Labyrinth.id;
 
 public class ItemRegistry {
 
-    // item registration
+    // test sword
     public static final LabyrinthSwordItem TEST_SWORD =
             Registry.register(Registries.ITEM, id("test_sword"),
             new LabyrinthSwordItem(ToolMaterials.IRON, 2020, 0F, Items.IRON_SWORD, new Item.Settings(), "test_sword"));
+    // bows
     public static final BlazeBowItem BLAZE_BOW = Registry.register(Registries.ITEM, id("blaze_bow"),
             new BlazeBowItem(Items.BOW, "blaze_bow"));
     // warhammers
@@ -58,15 +59,15 @@ public class ItemRegistry {
             new LabyrinthAxeItem(CustomMaterials.NETHERITE, 14, warAxeAttackSpeed, Items.NETHERITE_AXE, new Item.Settings().maxDamage(2800) , "netherite_waraxe"));
 
     // knife
-    public static final float knifeAttackSpeed = -2.0F;
+    public static final float knifeAttackSpeed = -0.0F;
     public static final LabyrinthKnifeItem IRON_KNIFE = Registry.register(Registries.ITEM, id("iron_knife"),
-            new LabyrinthKnifeItem(CustomMaterials.IRON, 3, knifeAttackSpeed, Items.IRON_SWORD, new Item.Settings().maxDamage(100) , "iron_knife"));
+            new LabyrinthKnifeItem(CustomMaterials.IRON, 2, knifeAttackSpeed, Items.IRON_SWORD, new Item.Settings().maxDamage(100) , "iron_knife"));
     public static final LabyrinthKnifeItem GOLDEN_KNIFE = Registry.register(Registries.ITEM, id("golden_knife"),
-            new LabyrinthKnifeItem(CustomMaterials.GOLD, 4, knifeAttackSpeed, Items.GOLDEN_SWORD, new Item.Settings().maxDamage(18) , "golden_knife"));
+            new LabyrinthKnifeItem(CustomMaterials.GOLD, 3, knifeAttackSpeed, Items.GOLDEN_SWORD, new Item.Settings().maxDamage(18) , "golden_knife"));
     public static final LabyrinthKnifeItem DIAMOND_KNIFE = Registry.register(Registries.ITEM, id("diamond_knife"),
-            new LabyrinthKnifeItem(CustomMaterials.DIAMOND, 5, knifeAttackSpeed, Items.DIAMOND_SWORD, new Item.Settings().maxDamage(220) , "diamond_knife"));
+            new LabyrinthKnifeItem(CustomMaterials.DIAMOND, 4, knifeAttackSpeed, Items.DIAMOND_SWORD, new Item.Settings().maxDamage(220) , "diamond_knife"));
     public static final LabyrinthKnifeItem NETHERITE_KNIFE = Registry.register(Registries.ITEM, id("netherite_knife"),
-            new LabyrinthKnifeItem(CustomMaterials.NETHERITE, 6, knifeAttackSpeed, Items.NETHERITE_SWORD, new Item.Settings().maxDamage(350) , "netherite_knife"));
+            new LabyrinthKnifeItem(CustomMaterials.NETHERITE, 5, knifeAttackSpeed, Items.NETHERITE_SWORD, new Item.Settings().maxDamage(350) , "netherite_knife"));
 
     // spear
     public static final float spearAttackSpeed = -2.8F;

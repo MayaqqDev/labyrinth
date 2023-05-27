@@ -2,7 +2,7 @@ package dev.mayaqq.labyrinth.mixin;
 
 import dev.mayaqq.labyrinth.gui.ForgeGui;
 import dev.mayaqq.labyrinth.registry.TagRegistry;
-import dev.mayaqq.labyrinth.utils.mutliblock.Multiblock;
+import dev.mayaqq.nexusframe.api.multiblock.Multiblock;
 import net.minecraft.block.AnvilBlock;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -83,7 +83,7 @@ public class AnvilBlockMixin {
     }
     private static void getForgeMultiblock(BlockPos pos) {
         if (forgeMultiblocks.get(pos) == null) {
-            forgeMultiblocks.put(pos, new  Multiblock(getForge(), getPredicates(), true));
+            forgeMultiblocks.put(pos, new  Multiblock(getForge(), getPredicates(), true, false));
         }
     }
 }
