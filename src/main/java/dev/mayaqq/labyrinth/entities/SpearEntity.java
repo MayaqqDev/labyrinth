@@ -4,6 +4,7 @@ import dev.mayaqq.labyrinth.registry.EntityRegistry;
 import dev.mayaqq.labyrinth.registry.ItemRegistry;
 import dev.mayaqq.labyrinth.registry.materials.CustomMaterials;
 import eu.pb4.polymer.core.api.entity.PolymerEntity;
+import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -16,6 +17,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -34,6 +36,7 @@ public class SpearEntity extends PersistentProjectileEntity implements PolymerEn
     private boolean dealtDamage;
     private final ToolMaterial material;
     private final TrackedData<ItemStack> ITEM;
+    private final int slot;
     private HashMap<ToolMaterial, Item> materialToItem = new HashMap<>() {{
         put(CustomMaterials.IRON, ItemRegistry.IRON_SPEAR);
         put(CustomMaterials.GOLD, ItemRegistry.GOLDEN_SPEAR);
@@ -41,20 +44,22 @@ public class SpearEntity extends PersistentProjectileEntity implements PolymerEn
         put(CustomMaterials.NETHERITE, ItemRegistry.NETHERITE_SPEAR);
     }};
 
-    public SpearEntity(World world, LivingEntity owner, ItemStack stack, ToolMaterial material) {
+    public SpearEntity(World world, LivingEntity owner, ItemStack stack, ToolMaterial material, int slot) {
         super(EntityRegistry.SPEAR, owner, world);
         this.spearStack = new ItemStack(materialToItem.get(material));
         this.spearStack = stack.copy();
         this.dataTracker.set(ENCHANTED, stack.hasGlint());
         this.material = material;
         this.ITEM = DataTracker.registerData(SpearEntity.class, TrackedDataHandlerRegistry.ITEM_STACK);
+        this.slot = slot;
     }
 
-    public SpearEntity(EntityType<SpearEntity> entityType, World world, ToolMaterial material) {
+    public SpearEntity(EntityType<SpearEntity> entityType, World world, ToolMaterial material, int slot) {
         super(entityType, world);
         this.spearStack = new ItemStack(materialToItem.get(material));
         this.material = material;
         this.ITEM = DataTracker.registerData(SpearEntity.class, TrackedDataHandlerRegistry.ITEM_STACK);
+        this.slot = slot;
     }
 
     protected void initDataTracker() {
@@ -87,7 +92,7 @@ public class SpearEntity extends PersistentProjectileEntity implements PolymerEn
         }
 
         Entity entity2 = this.getOwner();
-        DamageSource damageSource = this.getDamageSources().trident(this, (Entity)(entity2 == null ? this : entity2));
+        DamageSource damageSource = this.getDamageSources().trident(this, (entity2 == null ? this : entity2));
         this.dealtDamage = true;
         SoundEvent soundEvent = SoundEvents.ITEM_TRIDENT_HIT;
         if (entity.damage(damageSource, f)) {
@@ -113,7 +118,12 @@ public class SpearEntity extends PersistentProjectileEntity implements PolymerEn
     }
 
     protected boolean tryPickup(PlayerEntity player) {
-        return super.tryPickup(player) || this.isNoClip() && this.isOwner(player) && player.getInventory().insertStack(this.asItemStack());
+        if (player.getInventory().getStack(this.slot).getItem() == Items.AIR && this.isOwner(player)) {
+            player.getInventory().setStack(this.slot, this.spearStack);
+            return true;
+        } else {
+            return super.tryPickup(player) || this.isNoClip() && this.isOwner(player) && player.getInventory().insertStack(this.asItemStack());
+        }
     }
 
     protected SoundEvent getHitSound() {

@@ -15,7 +15,7 @@ public class EntityRegistry {
     public static final EntityType<SpearEntity> SPEAR = Registry.register(Registries.ENTITY_TYPE, id("spear"), FabricEntityTypeBuilder.create(SpawnGroup.MISC, new EntityType.EntityFactory<SpearEntity>() {
         @Override
         public SpearEntity create(EntityType<SpearEntity> type, World world) {
-            return new SpearEntity(type, world, null);
+            return new SpearEntity(type, world, null, 0);
         }
     }).dimensions(EntityType.TRIDENT.getDimensions()).build());
     public static void register() {

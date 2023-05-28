@@ -126,20 +126,26 @@ public class ForgeGui {
                             }
                         }
                     });
-                    // spawns the output item entity
-                    world.spawnEntity(new ItemEntity(player.getWorld(), pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, stack));
-                    gui.close();
-                    // visual effects on when the player crafts the item
-                    world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_ANVIL_USE, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                    world.spawnParticles(ParticleTypes.EXPLOSION, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, 4, 0, 0, 0, 0);
+                    spawnItem(world, player, pos, stack);
+                } else if (player.isCreative()) {
+                    spawnItem(world, player, pos, stack);
                 } else {
                     // if the player doesn't have all the ingredients, sends a message and closes the gui
                     player.sendMessage(Text.translatable("gui.labyrinth.forge.message.negative.ingredient"), true);
-                    gui.close();
                 }
+                gui.close();
             });
             gui.setSlot(i + guiAddition, guiElement.build());
         }
         gui.open();
+    }
+
+    public static void spawnItem(ServerWorld world, ServerPlayerEntity player, BlockPos pos, ItemStack stack) {
+        // spawns the item in the world
+        world.spawnEntity(new ItemEntity(player.getWorld(), pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, stack));
+        // visual effects on when the player crafts the item
+        world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), SoundEvents.BLOCK_ANVIL_USE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+        world.spawnParticles(ParticleTypes.EXPLOSION, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, 4, 0, 0, 0, 0);
+
     }
 }

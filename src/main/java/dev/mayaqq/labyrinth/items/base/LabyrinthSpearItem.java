@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
 import dev.mayaqq.labyrinth.entities.SpearEntity;
 import net.minecraft.block.BlockState;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttribute;
@@ -18,11 +19,14 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.stat.Stats;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class LabyrinthSpearItem extends LabyrinthSwordItem {
     private final Multimap<EntityAttribute, EntityAttributeModifier> attributeModifiers;
@@ -54,7 +58,13 @@ public class LabyrinthSpearItem extends LabyrinthSwordItem {
                     stack.damage(1, playerEntity, (p) -> {
                         p.sendToolBreakStatus(user.getActiveHand());
                     });
-                    SpearEntity spearEntity = new SpearEntity(world, playerEntity, stack, this.getMaterial());
+                    int slot = 0;
+                    for (int y = 0; y < playerEntity.getInventory().size(); y++) {
+                        if (playerEntity.getInventory().getStack(y) == stack) {
+                            slot = y;
+                        }
+                    }
+                    SpearEntity spearEntity = new SpearEntity(world, playerEntity, stack, this.getMaterial(), slot);
                     spearEntity.setCustomNameVisible(false);
                     spearEntity.setCustomName(Text.of(getMaterial().toString().toLowerCase() + "_spear"));
                     spearEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0F, 2.5F, 1.0F);
@@ -111,5 +121,10 @@ public class LabyrinthSpearItem extends LabyrinthSwordItem {
     @Override
     public int getEnchantability() {
         return 1;
+    }
+    @Override
+    public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
+        tooltip.add(Text.translatable("item.labyrinth.spear.tooltip").formatted(Formatting.GRAY).formatted(Formatting.ITALIC));
+        tooltip.add(Text.of(" "));
     }
 }
