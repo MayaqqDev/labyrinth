@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:item/generated",
+  "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "labyrinth:item/diamond_warhammer"
+    "layer0": "labyrinth:item/warhammer/diamond_warhammer"
   }
 }

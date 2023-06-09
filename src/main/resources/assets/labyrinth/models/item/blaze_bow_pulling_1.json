@@ -1,0 +1,6 @@
+{
+    "parent": "labyrinth:item/blaze_bow",
+    "textures": {
+        "layer0": "labyrinth:item/blaze_bow/blaze_bow_pulling_1"
+    }
+}

@@ -4,7 +4,6 @@ import dev.mayaqq.labyrinth.registry.EntityRegistry;
 import dev.mayaqq.labyrinth.registry.ItemRegistry;
 import dev.mayaqq.labyrinth.registry.materials.CustomMaterials;
 import eu.pb4.polymer.core.api.entity.PolymerEntity;
-import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;

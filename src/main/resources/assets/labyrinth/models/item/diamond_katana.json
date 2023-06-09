@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "labyrinth:item/katana/diamond_katana"
+  }
+}

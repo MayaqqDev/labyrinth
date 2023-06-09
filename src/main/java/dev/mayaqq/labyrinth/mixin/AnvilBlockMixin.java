@@ -60,12 +60,141 @@ public class AnvilBlockMixin {
     private static char[][][] getForge() {
         if (COMPLETED_FORGE == null) {
             COMPLETED_FORGE = new char[][][]{
-                    {{'b', 'b', 'b', 'b', 'b'}, {'b', 'b', 's', 'b', 'b'}, {'b', 's', 'x', 's', 'b'}, {'b', 'b', 's', 'b', 'b'}, {'b', 'b', 'b', 'b', 'b'}},
-                    {{'b', 'a', 'a', 'a', 'b'}, {'a', 'a', 'a', 'a', 'a'}, {'a', 'a', '$', 'a', 'a'}, {'a', 'a', 'a', 'a', 'a'}, {'b', 'a', 'a', 'a', 'b'}},
-                    {{'w', 'a', 'a', 'a', 'w'}, {'a', 'a', 'a', 'a', 'a'}, {'a', 'a', 'a', 'a', 'a'}, {'a', 'a', 'a', 'a', 'a'}, {'w', 'a', 'a', 'a', 'w'}},
-                    {{'w', 'a', 'a', 'a', 'w'}, {'a', 'a', 'a', 'a', 'a'}, {'a', 'a', 'w', 'a', 'a'}, {'a', 'a', 'a', 'a', 'a'}, {'w', 'a', 'a', 'a', 'w'}},
-                    {{'b', 'a', 'a', 'a', 'b'}, {'a', 'a', 'a', 'a', 'a'}, {'a', 'a', 'c', 'a', 'a'}, {'a', 'a', 'a', 'a', 'a'}, {'b', 'a', 'a', 'a', 'b'}},
-                    {{'a', 'b', 'b', 'b', 'a'}, {'b', 'b', 'b', 'b', 'b'}, {'b', 'b', 'b', 'b', 'b'}, {'b', 'b', 'b', 'b', 'b'}, {'a', 'b', 'b', 'b', 'a'}}
+                    {
+                            {'a', 'a', 'a', 'a', 's', 's', 's', 's', 's', 's', 's', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 's', 'b', 'b', 'b', 'b', 'b', 's', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 's', 's', 'b', 'b', 'b', 'b', 'b', 's', 's', 'a', 'a', 'a'},
+                            {'a', 'a', 's', 's', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 's', 's', 'a', 'a'},
+                            {'s', 's', 's', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 's', 's', 's'},
+                            {'s', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 's'},
+                            {'s', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 's'},
+                            {'s', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 's'},
+                            {'s', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 's'},
+                            {'s', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 's'},
+                            {'s', 's', 's', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 's', 's', 's'},
+                            {'a', 'a', 'a', 's', 's', 'b', 'b', 'b', 'b', 'b', 's', 's', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 's', 'b', 'b', 'b', 'b', 'b', 's', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 's', 's', 's', 's', 's', 's', 's', 'a', 'a', 'a', 'a'},
+                    },
+                    {
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 's', 's', 's', 's', 's', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'b', 'a', 'b', 'b', 'b', 'b', 'b', 'a', 'b', 'a', 'a', 'a'},
+                            {'a', 'a', 's', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 's', 'a', 'a'},
+                            {'a', 'a', 's', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 's', 'a', 'a'},
+                            {'a', 'a', 's', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 's', 'a', 'a'},
+                            {'a', 'a', 's', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 's', 'a', 'a'},
+                            {'a', 'a', 's', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 's', 'a', 'a'},
+                            {'a', 'a', 'a', 'b', 'a', 'b', 'b', 'b', 'b', 'b', 'a', 'b', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 's', 's', 's', 's', 's', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                    },
+                    {
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'f', 'a', 'a', 'a', 'a', 'a', 'f', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'f', 'a', 's', 's', 's', 's', 's', 'a', 'f', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 's', 'c', 'c', 'c', 'c', 'c', 's', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 's', 'c', 'c', 's', 'c', 'c', 's', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 's', 'c', 's', 'o', 's', 'c', 's', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 's', 'c', 'c', 's', 'c', 'c', 's', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 's', 'c', 'c', 'c', 'c', 'c', 's', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'f', 'a', 's', 's', 's', 's', 's', 'a', 'f', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'f', 'a', 'a', 'a', 'a', 'a', 'f', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                    },
+                    {
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'f', 'a', 'a', 'a', 'a', 'a', 'f', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'f', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'f', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', '$', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'f', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'f', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'f', 'a', 'a', 'a', 'a', 'a', 'f', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                    },
+                    {
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'f', 'a', 'a', 'a', 'a', 'a', 'f', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'f', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'f', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'f', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'f', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'f', 'a', 'a', 'a', 'a', 'a', 'f', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                    },
+                    {
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'c', 'a', 'a', 'a', 'a', 'a', 'c', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'c', 'l', 'c', 'a', 'a', 'a', 'c', 'l', 'c', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'c', 's', 'a', 'a', 'a', 's', 'c', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'c', 's', 'a', 'a', 'a', 's', 'c', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'c', 'l', 'c', 'a', 'a', 'a', 'c', 'l', 'c', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'c', 'a', 'a', 'a', 'a', 'a', 'c', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                    },
+                    {
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'm', 'a', 'a', 'a', 'a', 'a', 'm', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'c', 'a', 'a', 'a', 'c', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'c', 'a', 'c', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'c', 'a', 'c', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'c', 'a', 'a', 'a', 'c', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'm', 'a', 'a', 'a', 'a', 'a', 'm', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                    },
+                    {
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 's', 'b', 's', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'b', 'g', 'b', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 's', 'b', 's', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                            {'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a'},
+                    }
             };
         }
         return COMPLETED_FORGE;
@@ -73,17 +202,20 @@ public class AnvilBlockMixin {
     private  static HashMap<Character, Predicate<BlockState>> getPredicates() {
         HashMap<Character, Predicate<BlockState>> predicates = new HashMap<>();
         predicates.put('a', BlockStatePredicate.ANY);
+        predicates.put('o', blockState -> blockState.isIn(TagRegistry.FORGE_BASE));
         predicates.put('$', BlockStatePredicate.forBlock(Blocks.ANVIL));
-        predicates.put('b', blockState -> blockState.isIn(TagRegistry.FORGE_BRICKS));
-        predicates.put('w', blockState -> blockState.isIn(TagRegistry.FORGE_WALLS));
-        predicates.put('x', blockState -> blockState.isIn(TagRegistry.FORGE_BASE));
-        predicates.put('s', blockState -> blockState.isIn(TagRegistry.FORGE_STAIRS));
-        predicates.put('c', BlockStatePredicate.forBlock(Blocks.CHAIN));
+        predicates.put('b', BlockStatePredicate.forBlock(Blocks.BLACKSTONE));
+        predicates.put('c', BlockStatePredicate.forBlock(Blocks.POLISHED_BLACKSTONE_BRICKS));
+        predicates.put('m', BlockStatePredicate.forBlock(Blocks.POLISHED_BLACKSTONE_SLAB));
+        predicates.put('f', BlockStatePredicate.forBlock(Blocks.POLISHED_BLACKSTONE_WALL));
+        predicates.put('s', BlockStatePredicate.forBlock(Blocks.POLISHED_BLACKSTONE_BRICK_STAIRS));
+        predicates.put('l', BlockStatePredicate.forBlock(Blocks.LAVA));
+        predicates.put('g', BlockStatePredicate.forBlock(Blocks.GILDED_BLACKSTONE));
         return predicates;
     }
     private static void getForgeMultiblock(BlockPos pos) {
         if (forgeMultiblocks.get(pos) == null) {
-            forgeMultiblocks.put(pos, new  Multiblock(getForge(), getPredicates(), true, false));
+            forgeMultiblocks.put(pos, new Multiblock(getForge(), getPredicates(), true, false));
         }
     }
 }

@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:item/generated",
+  "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "labyrinth:item/netherite_warhammer"
+    "layer0": "labyrinth:item/warhammer/netherite_warhammer"
   }
 }

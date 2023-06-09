@@ -65,8 +65,6 @@ public class LabyrinthSpearItem extends LabyrinthSwordItem {
                         }
                     }
                     SpearEntity spearEntity = new SpearEntity(world, playerEntity, stack, this.getMaterial(), slot);
-                    spearEntity.setCustomNameVisible(false);
-                    spearEntity.setCustomName(Text.of(getMaterial().toString().toLowerCase() + "_spear"));
                     spearEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0F, 2.5F, 1.0F);
                     if (playerEntity.getAbilities().creativeMode) {
                         spearEntity.pickupType = PersistentProjectileEntity.PickupPermission.CREATIVE_ONLY;

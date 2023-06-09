@@ -11,6 +11,7 @@ public class TagRegistry {
     public static final TagKey<Block> FORGE_BRICKS = TagKey.of(RegistryKeys.BLOCK, id("forge_bricks"));
     public static final TagKey<Block> FORGE_STAIRS = TagKey.of(RegistryKeys.BLOCK, id("forge_stairs"));
     public static final TagKey<Block> FORGE_WALLS = TagKey.of(RegistryKeys.BLOCK, id("forge_walls"));
+    public static final TagKey<Block> FORGE_SLABS = TagKey.of(RegistryKeys.BLOCK, id("forge_slabs"));
 
 
     public static void register() {}

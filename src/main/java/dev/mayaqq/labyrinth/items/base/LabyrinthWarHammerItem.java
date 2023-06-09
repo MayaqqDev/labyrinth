@@ -20,6 +20,12 @@ public class LabyrinthWarHammerItem extends LabyrinthSwordItem {
         itemStack.addEnchantment(Enchantments.KNOCKBACK, 2);
     }
     @Override
+    public ItemStack getDefaultStack() {
+        ItemStack stack = new ItemStack(this);
+        stack.addEnchantment(Enchantments.KNOCKBACK, 2);
+        return stack;
+    }
+    @Override
     public void appendTooltip(ItemStack itemStack, World world, List<Text> tooltip, TooltipContext tooltipContext) {
         tooltip.add(Text.translatable("item.labyrinth.warhammer.tooltip").formatted(Formatting.GRAY).formatted(Formatting.ITALIC));
         tooltip.add(Text.of(" "));

@@ -31,7 +31,7 @@ import static dev.mayaqq.labyrinth.Labyrinth.LOGGER;
 
 public class ForgeGui {
     public static void gui(ServerPlayerEntity player, BlockPos pos) {
-        ServerWorld world = player.getWorld();
+        ServerWorld world = (ServerWorld) player.getWorld();
         SimpleGui gui = new SimpleGui(ScreenHandlerType.GENERIC_9X6, player, false) {};
         // sets the title of the gui
         gui.setTitle(Text.translatable("gui.labyrinth.forge.title"));
@@ -62,7 +62,7 @@ public class ForgeGui {
         ArrayList<ForgeRecipe> forgeRecipes = new ArrayList<>();
         for (int i = 0; i < recipes.size(); i++) {
             Recipe<?> recipe = recipes.toArray(new Recipe<?>[0])[i];
-            if (recipe.getType() == RecipeRegistry.FORGING && ((ForgeRecipe) recipe).getMaterial() == player.world.getBlockState(pos.down()).getBlock()) {
+            if (recipe.getType() == RecipeRegistry.FORGING && ((ForgeRecipe) recipe).getMaterial() == player.getWorld().getBlockState(pos.down()).getBlock()) {
                 forgeRecipes.add((ForgeRecipe) recipe);
             }
         }

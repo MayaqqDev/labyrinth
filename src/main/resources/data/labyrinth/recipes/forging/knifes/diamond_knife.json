@@ -3,7 +3,7 @@
   "input": [
     {
       "item": "minecraft:diamond",
-      "count": 1
+      "count": 5
     },
     {
       "item": "minecraft:stick",
@@ -11,7 +11,7 @@
     },
     {
       "item": "minecraft:flint",
-      "count": 1
+      "count": 5
     }
   ],
   "result": "labyrinth:diamond_knife",

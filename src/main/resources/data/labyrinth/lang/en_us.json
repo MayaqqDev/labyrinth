@@ -3,27 +3,30 @@
 
   "item.labyrinth.test_sword": "Test Sword",
   "item.labyrinth.blaze_bow": "Blaze Bow",
-    "item.labyrinth.blazebow.tooltip": "Comes pre-enchanted with Flame I",
+    "item.labyrinth.blazebow.tooltip": "That's hot!",
   "item.labyrinth.iron_warhammer": "Iron Warhammer",
   "item.labyrinth.golden_warhammer": "Golden Warhammer",
   "item.labyrinth.diamond_warhammer": "Diamond Warhammer",
   "item.labyrinth.netherite_warhammer": "Netherite Warhammer",
-    "item.labyrinth.warhammer.tooltip": "Heavy, but powerful",
+    "item.labyrinth.warhammer.tooltip": "Hammmmmmmmmmmmmmmmer!",
 
   "item.labyrinth.iron_hammer": "Iron Hammer",
   "item.labyrinth.golden_hammer": "Golden Hammer",
   "item.labyrinth.diamond_hammer": "Diamond Hammer",
   "item.labyrinth.netherite_hammer": "Netherite Hammer",
+  "item.labyrinth.hammer.tooltip": "Can we fix it? Yes we can!",
 
   "item.labyrinth.iron_waraxe": "Iron Waraxe",
   "item.labyrinth.golden_waraxe": "Golden Waraxe",
   "item.labyrinth.diamond_waraxe": "Diamond Waraxe",
   "item.labyrinth.netherite_waraxe": "Netherite Waraxe",
+    "item.labyrinth.waraxe.tooltip": "This is NOT for cutting trees!",
 
   "item.labyrinth.iron_knife": "Iron Knife",
   "item.labyrinth.golden_knife": "Golden Knife",
   "item.labyrinth.diamond_knife": "Diamond Knife",
   "item.labyrinth.netherite_knife": "Netherite Knife",
+    "item.labyrinth.knife.tooltip": "Don't use this for cooking!",
 
   "item.labyrinth.iron_spear": "Iron Spear",
   "item.labyrinth.golden_spear": "Golden Spear",
@@ -35,16 +38,19 @@
   "item.labyrinth.golden_cleaver": "Golden Cleaver",
   "item.labyrinth.diamond_cleaver": "Diamond Cleaver",
   "item.labyrinth.netherite_cleaver": "Netherite Cleaver",
+    "item.labyrinth.cleaver.tooltip": "For the monster under your bed",
 
   "item.labyrinth.iron_tomahawk": "Iron Tomahawk",
   "item.labyrinth.golden_tomahawk": "Golden Tomahawk",
   "item.labyrinth.diamond_tomahawk": "Diamond Tomahawk",
   "item.labyrinth.netherite_tomahawk": "Netherite Tomahawk",
+    "item.labyrinth.tomahawk.tooltip": "Small, Handy, Powerful",
 
   "item.labyrinth.iron_katana": "Iron Katana",
   "item.labyrinth.golden_katana": "Golden Katana",
   "item.labyrinth.diamond_katana": "Diamond Katana",
   "item.labyrinth.netherite_katana": "Netherite Katana",
+    "item.labyrinth.katana.tooltip": "Anime reference?",
 
   "gui.labyrinth.forge.title": "Forge",
   "gui.labyrinth.forge.message.negative.ingredient": "§cYou don't have all the required ingredients!",
