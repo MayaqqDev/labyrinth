@@ -1,0 +1,19 @@
+{
+  "type": "labyrinth:forging",
+  "input": [
+    {
+      "item": "minecraft:netherite_ingot",
+      "count": 3
+    },
+    {
+      "item": "minecraft:wither_skeleton_skull",
+      "count": 1
+    },
+    {
+      "item": "minecraft:blaze_rod",
+      "count": 2
+    }
+  ],
+  "result": "labyrinth:wither_scythe",
+  "material": "minecraft:netherite_block"
+}

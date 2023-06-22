@@ -3,6 +3,7 @@ package dev.mayaqq.labyrinth.registry;
 import dev.mayaqq.labyrinth.Labyrinth;
 import dev.mayaqq.labyrinth.entities.SpearEntity;
 import dev.mayaqq.labyrinth.entities.TomahawkEntity;
+import dev.mayaqq.labyrinth.entities.WitherScytheSkullEntity;
 import dev.mayaqq.labyrinth.registry.materials.CustomMaterials;
 import eu.pb4.polymer.core.api.entity.PolymerEntityUtils;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
@@ -30,8 +31,17 @@ public class EntityRegistry {
         }
     }).dimensions(EntityType.TRIDENT.getDimensions()).build());
 
+public static final EntityType<WitherScytheSkullEntity> WITHER_SCYTHE_SKULL = Registry.register(Registries.ENTITY_TYPE, id("wither_scythe_skull"), FabricEntityTypeBuilder.create(SpawnGroup.MISC, new EntityType.EntityFactory<WitherScytheSkullEntity>() {
+        @Override
+        public WitherScytheSkullEntity create(EntityType<WitherScytheSkullEntity> type, World world) {
+            return new WitherScytheSkullEntity(type, world);
+        }
+    }).dimensions(EntityType.TRIDENT.getDimensions()).build());
+
     public static void register() {
         PolymerEntityUtils.registerType(SPEAR);
+        PolymerEntityUtils.registerType(TOMAHAWK);
+        PolymerEntityUtils.registerType(WITHER_SCYTHE_SKULL);
 
     }
 }

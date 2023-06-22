@@ -2,8 +2,20 @@
   "creative.labyrinth.group": "Labyrinth",
 
   "item.labyrinth.test_sword": "Test Sword",
+
   "item.labyrinth.blaze_bow": "Blaze Bow",
     "item.labyrinth.blazebow.tooltip": "That's hot!",
+
+  "item.labyrinth.magic_mirror": "Magic Mirror",
+    "item.labyrinth.magic_mirror.tooltip": "Teleports you to your spawnpoint",
+
+  "item.labyrinth.wither_scythe": "Wither Scythe",
+    "item.labyrinth.wither_scythe.tooltip": "Dedicated to sniper0909123",
+    "item.labyrinth.wither_scythe.tooltip2": "Applies Wither on hit",
+  "item.labyrinth.wizard_wand": "Wizard Wand",
+    "item.labyrinth.wizard_wand.tooltip": "Dedicated to Dadaovec",
+    "item.labyrinth.wizard_wand.tooltip2": "Shoots fireballs and makes you invisible",
+
   "item.labyrinth.iron_warhammer": "Iron Warhammer",
   "item.labyrinth.golden_warhammer": "Golden Warhammer",
   "item.labyrinth.diamond_warhammer": "Diamond Warhammer",

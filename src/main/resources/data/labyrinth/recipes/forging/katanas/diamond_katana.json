@@ -10,8 +10,16 @@
       "count": 1
     },
     {
-      "item": "minecraft:birch_planks",
-      "count": 3
+      "item": "minecraft:gold_ingot",
+      "count": 1
+    },
+    {
+      "item": "minecraft:blackstone",
+      "count": 2
+    },
+    {
+      "item": "minecraft:stick",
+      "count": 1
     }
   ],
   "result": "labyrinth:diamond_katana",

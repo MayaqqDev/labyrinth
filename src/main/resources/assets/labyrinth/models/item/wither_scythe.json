@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "labyrinth:item/donation_items/wither_scythe"
+  }
+}

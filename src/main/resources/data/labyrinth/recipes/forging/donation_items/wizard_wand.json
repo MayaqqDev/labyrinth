@@ -1,0 +1,19 @@
+{
+  "type": "labyrinth:forging",
+  "input": [
+    {
+      "item": "minecraft:diamond",
+      "count": 12
+    },
+    {
+      "item": "minecraft:amethyst_shard",
+      "count": 64
+    },
+    {
+      "item": "minecraft:blaze_powder",
+      "count": 4
+    }
+  ],
+  "result": "labyrinth:wizard_wand",
+  "material": "minecraft:diamond_block"
+}

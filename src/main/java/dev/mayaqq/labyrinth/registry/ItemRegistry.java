@@ -1,10 +1,14 @@
 package dev.mayaqq.labyrinth.registry;
 
 import dev.mayaqq.labyrinth.items.BlazeBowItem;
+import dev.mayaqq.labyrinth.items.MagicMirrorItem;
+import dev.mayaqq.labyrinth.items.WitherScytheItem;
+import dev.mayaqq.labyrinth.items.WizardWandItem;
 import dev.mayaqq.labyrinth.items.base.*;
 import dev.mayaqq.labyrinth.registry.materials.CustomMaterials;
 import eu.pb4.polymer.core.api.item.PolymerItemGroupUtils;
 import eu.pb4.polymer.resourcepack.api.PolymerResourcePackUtils;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.*;
@@ -13,6 +17,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
+import net.minecraft.util.Rarity;
 
 import static dev.mayaqq.labyrinth.Labyrinth.id;
 
@@ -25,9 +30,21 @@ public class ItemRegistry {
     public static final LabyrinthSwordItem TEST_SWORD =
             Registry.register(Registries.ITEM, id("test_sword"),
             new LabyrinthSwordItem(CustomMaterials.NETHERITE, 10001, 1000F, Items.NETHERITE_SWORD, new Item.Settings().maxDamage(-1), "test_sword"));
+
     // bows
     public static final BlazeBowItem BLAZE_BOW = Registry.register(Registries.ITEM, id("blaze_bow"),
             new BlazeBowItem(Items.BOW, "blaze_bow"));
+
+    // utility items
+    public static final MagicMirrorItem MAGIC_MIRROR = Registry.register(Registries.ITEM, id("magic_mirror"),
+            new MagicMirrorItem(Items.ENDER_EYE, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), "magic_mirror"));
+
+    // donation items
+    public static final WitherScytheItem WITHER_SCYTHE = Registry.register(Registries.ITEM, id("wither_scythe"),
+            new WitherScytheItem(CustomMaterials.NETHERITE, 7, -2.0F, Items.NETHERITE_HOE, new Item.Settings().maxDamage(5000), "wither_scythe"));
+    public static final WizardWandItem WIZARD_WAND = Registry.register(Registries.ITEM, id("wizard_wand"),
+            new WizardWandItem(Items.BLAZE_ROD, new FabricItemSettings().maxCount(1).fireproof().rarity(Rarity.EPIC), "wizard_wand"));
+
     // warhammers
     private static final float warhammerAttackSpeed = -3.3F;
     public static final LabyrinthWarHammerItem IRON_WARHAMMER = Registry.register(Registries.ITEM, id("iron_warhammer"),
@@ -51,15 +68,15 @@ public class ItemRegistry {
             new LabyrinthHammerItem(CustomMaterials.NETHERITE, 12, hammerAttackSpeed, Items.NETHERITE_AXE, new Item.Settings().maxDamage(2500) , "netherite_hammer"));
 
     // war axes
-    public static final float warAxeAttackSpeed = -3.0F;
+    public static final float warAxeAttackSpeed = -2.8F;
     public static final LabyrinthWaraxeItem IRON_WARAXE = Registry.register(Registries.ITEM, id("iron_waraxe"),
-            new LabyrinthWaraxeItem(CustomMaterials.IRON, 9, warAxeAttackSpeed, Items.IRON_AXE, new Item.Settings().maxDamage(600) , "iron_waraxe"));
+            new LabyrinthWaraxeItem(CustomMaterials.IRON, 10, warAxeAttackSpeed, Items.IRON_AXE, new Item.Settings().maxDamage(600) , "iron_waraxe"));
     public static final LabyrinthWaraxeItem GOLDEN_WARAXE = Registry.register(Registries.ITEM, id("golden_waraxe"),
-            new LabyrinthWaraxeItem(CustomMaterials.GOLD, 10, warAxeAttackSpeed, Items.GOLDEN_AXE, new Item.Settings().maxDamage(90) , "golden_waraxe"));
+            new LabyrinthWaraxeItem(CustomMaterials.GOLD, 12, warAxeAttackSpeed, Items.GOLDEN_AXE, new Item.Settings().maxDamage(90) , "golden_waraxe"));
     public static final LabyrinthWaraxeItem DIAMOND_WARAXE = Registry.register(Registries.ITEM, id("diamond_waraxe"),
-            new LabyrinthWaraxeItem(CustomMaterials.DIAMOND, 11, warAxeAttackSpeed, Items.DIAMOND_AXE, new Item.Settings().maxDamage(2000) , "diamond_waraxe"));
+            new LabyrinthWaraxeItem(CustomMaterials.DIAMOND, 13, warAxeAttackSpeed, Items.DIAMOND_AXE, new Item.Settings().maxDamage(2000) , "diamond_waraxe"));
     public static final LabyrinthWaraxeItem NETHERITE_WARAXE = Registry.register(Registries.ITEM, id("netherite_waraxe"),
-            new LabyrinthWaraxeItem(CustomMaterials.NETHERITE, 14, warAxeAttackSpeed, Items.NETHERITE_AXE, new Item.Settings().maxDamage(2800) , "netherite_waraxe"));
+            new LabyrinthWaraxeItem(CustomMaterials.NETHERITE, 15, warAxeAttackSpeed, Items.NETHERITE_AXE, new Item.Settings().maxDamage(2800) , "netherite_waraxe"));
 
     // knife
     public static final float knifeAttackSpeed = -0.0F;
