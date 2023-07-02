@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "#g#",
+        "gDg"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:black_dye"
+        },
+        "g": {
+            "item": "minecraft:gold_ingot"
+        },
+        "D": {
+            "item": "minecraft:dragon_egg"
+        }
+    },
+    "result": {
+        "item": "labyrinth:ender_crown",
+        "count": 1
+    }
+}

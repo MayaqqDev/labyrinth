@@ -1,9 +1,6 @@
 package dev.mayaqq.labyrinth.registry;
 
-import dev.mayaqq.labyrinth.items.BlazeBowItem;
-import dev.mayaqq.labyrinth.items.MagicMirrorItem;
-import dev.mayaqq.labyrinth.items.WitherScytheItem;
-import dev.mayaqq.labyrinth.items.WizardWandItem;
+import dev.mayaqq.labyrinth.items.*;
 import dev.mayaqq.labyrinth.items.base.*;
 import dev.mayaqq.labyrinth.registry.materials.CustomMaterials;
 import eu.pb4.polymer.core.api.item.PolymerItemGroupUtils;
@@ -34,6 +31,10 @@ public class ItemRegistry {
     // bows
     public static final BlazeBowItem BLAZE_BOW = Registry.register(Registries.ITEM, id("blaze_bow"),
             new BlazeBowItem(Items.BOW, "blaze_bow"));
+
+    // ender crown
+    public static final EnderCrownItem ENDER_CROWN = Registry.register(Registries.ITEM, id("ender_crown"),
+            new EnderCrownItem(Items.DRAGON_EGG, new FabricItemSettings().maxCount(1).rarity(Rarity.EPIC), "ender_crown"));
 
     // utility items
     public static final MagicMirrorItem MAGIC_MIRROR = Registry.register(Registries.ITEM, id("magic_mirror"),

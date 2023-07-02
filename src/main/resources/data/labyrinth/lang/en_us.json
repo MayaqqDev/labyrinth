@@ -6,8 +6,12 @@
   "item.labyrinth.blaze_bow": "Blaze Bow",
     "item.labyrinth.blazebow.tooltip": "That's hot!",
 
+  "item.labyrinth.ender_crown": "The Crown of Ender",
+    "item.labyrinth.ender_crown.tooltip": "One and Only",
+
   "item.labyrinth.magic_mirror": "Magic Mirror",
     "item.labyrinth.magic_mirror.tooltip": "Teleports you to your spawnpoint",
+    "item.labyrinth.magic_mirror.pvp_cooldown": "§cYou can't use this item in fights for the next §e%d seconds§c!",
 
   "item.labyrinth.wither_scythe": "Wither Scythe",
     "item.labyrinth.wither_scythe.tooltip": "Dedicated to sniper0909123",

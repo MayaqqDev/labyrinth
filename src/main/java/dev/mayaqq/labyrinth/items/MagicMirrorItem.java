@@ -1,6 +1,7 @@
 package dev.mayaqq.labyrinth.items;
 
 import dev.mayaqq.labyrinth.Labyrinth;
+import dev.mayaqq.labyrinth.extensions.ServerPlayerEntityExtension;
 import dev.mayaqq.labyrinth.items.base.LabyrinthItem;
 import dev.mayaqq.labyrinth.utils.Multithreading;
 import eu.pb4.polymer.resourcepack.api.PolymerResourcePackUtils;
@@ -56,15 +57,23 @@ public class MagicMirrorItem extends Item implements LabyrinthItem {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if (world.isClient) return TypedActionResult.pass(user.getStackInHand(hand));
-        ItemStack itemStack = user.getStackInHand(hand);
         ServerPlayerEntity player = (ServerPlayerEntity) user;
-        user.getItemCooldownManager().set(this, 600);
-        BlockPos pos = player.getSpawnPointPosition();
-        world.playSound(null, user.getBlockPos(), SoundEvents.BLOCK_PORTAL_TRAVEL, SoundCategory.PLAYERS, 1.0F, 1.0F);
-        Multithreading.schedule(() -> {
-            player.teleport(player.getServer().getWorld(player.getSpawnPointDimension()), pos.getX(), pos.getY(), pos.getZ(), player.getYaw(), player.getPitch());
-            world.addParticle(ParticleTypes.END_ROD, player.getX(), player.getY(), player.getZ(), 0.0D, 0.4D, 0.0D);
-        }, 5, TimeUnit.SECONDS);
-        return TypedActionResult.success(itemStack);
+        long cooldown = ((ServerPlayerEntityExtension) player).isOnPvpCooldown();
+        if (cooldown < 10000) {
+            int seconds = (int) (cooldown / 1000);
+            int remaining = 10 - seconds;
+            player.sendMessage(Text.translatable("item.labyrinth.magic_mirror.pvp_cooldown", remaining), false);
+            return TypedActionResult.fail(user.getStackInHand(hand));
+        } else {
+            ItemStack itemStack = user.getStackInHand(hand);
+            user.getItemCooldownManager().set(this, 600);
+            BlockPos pos = player.getSpawnPointPosition();
+            world.playSound(null, user.getBlockPos(), SoundEvents.BLOCK_PORTAL_TRAVEL, SoundCategory.PLAYERS, 1.0F, 1.0F);
+            Multithreading.schedule(() -> {
+                player.teleport(player.getServer().getWorld(player.getSpawnPointDimension()), pos.getX(), pos.getY(), pos.getZ(), player.getYaw(), player.getPitch());
+                world.addParticle(ParticleTypes.END_ROD, player.getX(), player.getY(), player.getZ(), 0.0D, 0.4D, 0.0D);
+            }, 5, TimeUnit.SECONDS);
+            return TypedActionResult.success(itemStack);
+        }
     }
 }

@@ -19,8 +19,7 @@ public enum CustomMaterials implements ToolMaterial {
     }),
     NETHERITE(4, 3800, 9.0F, 0.0F, 15, () -> {
         return Ingredient.ofItems(Items.NETHERITE_INGOT);
-    })
-    ;
+    });
 
     private final int miningLevel;
     private final int itemDurability;
