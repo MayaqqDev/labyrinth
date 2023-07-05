@@ -39,6 +39,8 @@ public class ItemRegistry {
     // utility items
     public static final MagicMirrorItem MAGIC_MIRROR = Registry.register(Registries.ITEM, id("magic_mirror"),
             new MagicMirrorItem(Items.ENDER_EYE, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), "magic_mirror"));
+    public static final SquidFlierItem SQUID_FLIER = Registry.register(Registries.ITEM, id("squid_flier"),
+            new SquidFlierItem(Items.ALLIUM, new FabricItemSettings().maxCount(1).rarity(Rarity.RARE), "squid_flier"));
 
     // donation items
     public static final WitherScytheItem WITHER_SCYTHE = Registry.register(Registries.ITEM, id("wither_scythe"),

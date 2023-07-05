@@ -1,5 +1,6 @@
 package dev.mayaqq.labyrinth.entities;
 
+import dev.mayaqq.labyrinth.Labyrinth;
 import dev.mayaqq.labyrinth.registry.EntityRegistry;
 import eu.pb4.polymer.core.api.entity.PolymerEntity;
 import net.minecraft.block.BlockState;
@@ -22,7 +23,6 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.hit.HitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
 
@@ -78,13 +78,21 @@ public class WitherScytheSkullEntity extends ExplosiveProjectileEntity implement
         }
     }
 
+    @Override
+    public void tick() {
+        super.tick();
+        if (this.age >= 50) {
+            this.getWorld().createExplosion(this, this.getX(), this.getY(), this.getZ(), 1.0F, false, World.ExplosionSourceType.NONE);
+            this.discard();
+        }
+    }
+
     protected void onCollision(HitResult hitResult) {
         super.onCollision(hitResult);
         if (!this.getWorld().isClient) {
             this.getWorld().createExplosion(this, this.getX(), this.getY(), this.getZ(), 1.0F, false, World.ExplosionSourceType.NONE);
             this.discard();
         }
-
     }
 
     public boolean canHit() {
