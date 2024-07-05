@@ -10,7 +10,6 @@ import dev.mayaqq.labyrinth.utils.recipe.ForgeRecipeInput;
 import dev.mayaqq.labyrinth.utils.recipe.IngredientStack;
 import eu.pb4.polymer.core.api.item.PolymerRecipe;
 import net.minecraft.block.Block;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
@@ -19,33 +18,24 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
-import net.minecraft.recipe.input.RecipeInput;
-import net.minecraft.registry.DynamicRegistryManager;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.util.Identifier;
+import net.minecraft.registry.*;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.List;
 
 public class ForgeRecipe implements Recipe<ForgeRecipeInput>, PolymerRecipe {
 
     protected final String group;
     protected final DefaultedList<IngredientStack> input;
     protected final ItemStack result;
-    protected final Identifier id;
-    protected final Identifier material;
+    protected final Block material;
 
-    public ForgeRecipe(String group, DefaultedList<IngredientStack> input, ItemStack result, Identifier id, Block material) {
+    public ForgeRecipe(String group, DefaultedList<IngredientStack> input, ItemStack result, Block material) {
         this.group = group;
         this.input = input;
         this.result = result;
-        this.id = id;
-        this.material = Registries.BLOCK.getId(material);
+        this.material = material;
     }
+
 
     @Override
     public DefaultedList<Ingredient> getIngredients() {
@@ -80,12 +70,12 @@ public class ForgeRecipe implements Recipe<ForgeRecipeInput>, PolymerRecipe {
         return result;
     }
 
-    public Identifier getMaterialId() {
-        return this.material;
+    public ItemStack getResult() {
+        return result;
     }
 
     public Block getMaterial() {
-        return Registries.BLOCK.get(this.material);
+        return material;
     }
 
     @Override
@@ -120,15 +110,15 @@ public class ForgeRecipe implements Recipe<ForgeRecipeInput>, PolymerRecipe {
                         return DataResult.success(DefaultedList.copyOf(IngredientStack.EMPTY, results));
                     }
                 }, DataResult::success).forGetter((recipe) -> recipe.input),
-                Identifier.CODEC.fieldOf("material").forGetter((recipe) -> recipe.material),
-                ItemStack.VALIDATED_CODEC.fieldOf("result").forGetter((recipe) -> recipe.result)
+                ItemStack.VALIDATED_CODEC.fieldOf("result").forGetter((recipe) -> recipe.result),
+                Registries.BLOCK.getCodec().fieldOf("material").forGetter((recipe) -> recipe.material)
         ).apply(instance, ForgeRecipe::new));
 
         public static final PacketCodec<RegistryByteBuf, ForgeRecipe> PACKET_CODEC = PacketCodec.tuple(
                 PacketCodecs.STRING, ForgeRecipe::getGroup,
-                IngredientStack.PACKET_CODEC, ForgeRecipe::getIngredientStacks,
-                Identifier.PACKET_CODEC, ForgeRecipe::getMaterial,
+                IngredientStack.PACKET_CODEC.collect(PacketCodecs.toCollection(DefaultedList::ofSize)), ForgeRecipe::getIngredientStacks,
                 ItemStack.PACKET_CODEC, ForgeRecipe::getResult,
+                PacketCodecs.registryValue(RegistryKeys.BLOCK), ForgeRecipe::getMaterial,
                 ForgeRecipe::new
         );
 
