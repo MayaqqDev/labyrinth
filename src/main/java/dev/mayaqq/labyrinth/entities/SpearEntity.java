@@ -81,7 +81,7 @@ public class SpearEntity extends PersistentProjectileEntity implements PolymerEn
 
     @Override
     protected ItemStack getDefaultItemStack() {
-        return this.spearStack.copy();
+        return new ItemStack(materialToItem.get(material));
     }
 
     @Nullable

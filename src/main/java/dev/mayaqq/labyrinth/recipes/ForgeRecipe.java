@@ -36,7 +36,6 @@ public class ForgeRecipe implements Recipe<ForgeRecipeInput>, PolymerRecipe {
         this.material = material;
     }
 
-
     @Override
     public DefaultedList<Ingredient> getIngredients() {
         DefaultedList<Ingredient> ingredients = DefaultedList.of();
